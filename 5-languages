@@ -13,3 +13,4 @@ switch (true) {
   default:
     console.log("We don’t speak this language yet :(");
 }
+
