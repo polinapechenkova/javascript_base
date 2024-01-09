@@ -3,16 +3,15 @@
 function convertCalculate(sum, changeCurrency, getCurrency) {
   switch (getCurrency) {
     case "eur":
-      const convertToEUR = sum / 102;
-      return `Сумма после конвертации составит: ${convertToEUR} ${getCurrency}.`;
+      return sum / 102;
     case "usd":
-      const convertToUSD = sum / 92;
-      return `Сумма после конвертации составит: ${convertToUSD} ${getCurrency}`;
+      return sum / 92;
     case "gbp":
-      const convertToGBP = sum / 81;
-      return `Сумма после конвертации составит: ${convertToGBP} ${getCurrency}`;
+      return sum / 81;
     default:
       return "null";
   }
 }
-console.log(convertCalculate(70000, "rub", "usd"));
+console.log("Сумма после конвертации составит:" + convertCalculate(70000, "rub", "usd"));
+
+
