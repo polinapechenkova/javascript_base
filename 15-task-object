@@ -2,8 +2,10 @@
 
 const ToDoList = {
   tasks: [],
+  taskId: 0,
 
-  addTask: function (title, id, priority) {
+  addTask: function (title, priority) {
+    const id = ++this.taskId;
     this.tasks.push({ title, id, priority });
   },
 
@@ -24,9 +26,9 @@ const ToDoList = {
   },
 };
 
-ToDoList.addTask("Помыть посуду", 1, 1);
-ToDoList.addTask("Погулять с собакой", 2, 2);
-ToDoList.addTask("Купить продукты", 3, 3);
+ToDoList.addTask("Помыть посуду", 1);
+ToDoList.addTask("Погулять с собакой", 2);
+ToDoList.addTask("Купить продукты", 3);
 console.log(ToDoList.tasks);
 
 ToDoList.deleteTaskById(1);
