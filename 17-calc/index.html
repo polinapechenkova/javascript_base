@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..800;1,400..800&display=swap"
+        rel="stylesheet">
+    <title>Calculator</title>
+</head>
+
+<body>
+    <div class="calc">
+        <div class="number">
+            <input class="number__input number__first" placeholder="Введите число">
+            <input class="number__input number__second" placeholder="Введите число">
+        </div>
+
+        <div class="action">
+            <button class="action__button action__button-plus" onclick="numAdd()">+</button>
+            <button class="action__button action__button-minus" onclick="numSubtract()">-</button>
+            <button class="action__button action__button-devide" onclick="numDivision()">/</button>
+            <button class="action__button action__button-multiply" onclick="numMultiply()">*</button>
+        </div>
+
+        <div class="result">
+            <div class="result__number"></div>
+        </div>
+
+        <div class="clear">
+            <button class="clear__button" onclick="numClear()">Очистить</button>
+        </div>
+    </div>
+    <script src="./app.js"></script>
+</body>
+
+</html>
