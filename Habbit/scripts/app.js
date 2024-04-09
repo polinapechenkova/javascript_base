@@ -2,6 +2,7 @@
 
 let habbits = [];
 const HABBIT_KEY = 'HABBIT_KEY';
+let globalActiveHabbitId;
 
 /* page */
 const page = {
@@ -76,7 +77,7 @@ function rerenderContent(activeHabbit) {
         element.classList.add('habbit');
         element.innerHTML = `<div class="habbit__day">День ${Number(index) + 1}</div>
                         <div class="habbit__comment">${activeHabbit.days[index].comment}</div>
-                        <button class="habbit__delete">
+                        <button class="habbit__delete" onclick="deleteDay(${index})">
                             <img src="./images/delete.png" alt="Удалить день ${index + 1}" />
                         </button>`;
         page.content.daysContainer.appendChild(element);
@@ -85,6 +86,7 @@ function rerenderContent(activeHabbit) {
 }
 
 function rerender(activeHabbitId) {
+    globalActiveHabbitId = activeHabbitId;
     const activeHabbit = habbits.find(habbit => habbit.id === activeHabbitId);
     if (!activeHabbit) {
       return;
@@ -93,6 +95,46 @@ function rerender(activeHabbitId) {
     rerenderHead(activeHabbit);
     rerenderContent(activeHabbit);
 }
+
+/* work with days */
+function addDays(event) {
+    const form = event.target;
+    event.preventDefault();
+    const data = new FormData(form);
+    const comment = data.get('comment');
+    form['comment'].classList.remove('error');
+    if (!comment) {
+        form['comment'].classList.add('error');
+    }
+    habbits = habbits.map(habbit => {
+        if (habbit.id === globalActiveHabbitId) {
+            return {
+                ...habbit,
+                days: habbit.days.concat([{ comment }])
+            }
+        }
+        return habbit;
+    });
+    form['comment'].value = '';
+    rerender(globalActiveHabbitId);
+    saveData();
+}
+
+function deleteDay(index) {
+    habbits = habbits.map(habbit => {
+        if (habbit.id === globalActiveHabbitId) {
+            habbit.days.splice(index, 1);
+            return {
+                ...habbit,
+                days: habbit.days
+            };
+        }
+        return habbit;
+    });
+    rerender(globalActiveHabbitId);
+    saveData();
+}
+
 
 // Загрузили наши данные, init
 (() => {
